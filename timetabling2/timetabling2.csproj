@@ -27,6 +27,9 @@
     <Content Include="hoved.js">
       <DependentUpon>hoved.ts</DependentUpon>
     </Content>
+    <Content Include="hoved.min.js">
+      <DependentUpon>hoved.ts</DependentUpon>
+    </Content>
     <Content Include="instans.js">
       <DependentUpon>instans.ts</DependentUpon>
     </Content>
@@ -40,6 +43,9 @@
     <Content Include="solution.js">
       <DependentUpon>solution.ts</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="solution.min.js">
+      <DependentUpon>solution.ts</DependentUpon>
     </Content>
     <Content Include="web.config">
       <SubType>Designer</SubType>

@@ -340,8 +340,6 @@ var instans;
                     }
                 }
             }
-            if(curev["Name"] == "E9") {
-            }
             if("Resources" in curev) {
                 if(curev["Resources"]["Resource"] instanceof Array) {
                     for(var i = 0, len = curev["Resources"]["Resource"].length; i < len; i++) {

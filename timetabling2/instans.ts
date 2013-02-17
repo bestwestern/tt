@@ -283,9 +283,7 @@ module instans {
                         nyev.eventeventgrupper.push(eventgrupper[kk]);
                 }
             }
-            if (curev["Name"] == "E9") {
-            }
-            if ("Resources" in curev) {
+              if ("Resources" in curev) {
                 if (curev["Resources"]["Resource"] instanceof Array)
                     for (var i = 0, len = curev["Resources"]["Resource"].length; i < len; i++)
                         lavres(curev["Resources"]["Resource"][i], resid, nyev, typeid)
@@ -305,15 +303,6 @@ module instans {
                     lavcon(con[key][i], key, evgruppeid, evid)
             else
                 lavcon(con[key], key, evgruppeid, evid)
-
-        /*   for (var i = 0; i < events.length; i++) {
-               if (events[i].eventmangler.length > 0)
-       
-                   var fddfdfsk = nobj["jk"]["jk"];
-           }*/
-        //   alert(k);
-        //  var kk = events.length;
-       
     }
     export function readxml() {
         
