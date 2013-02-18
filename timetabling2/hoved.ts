@@ -22,6 +22,7 @@ window.onload = () => {
     instans.readxml();
     var sol1: solution.Sol = new solution.Sol();
     alert(sol1.solevents.length.toString());
+    
     //  var k = new Course('jk', null);
 
 }
