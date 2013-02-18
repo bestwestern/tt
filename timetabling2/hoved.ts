@@ -18,11 +18,15 @@ link alle elementer på kryds og tværs (ligesom times i timegroup
 */
 
 window.onload = () => {
- 
+    /* if (typeof (Worker) !== "undefined")
+         alert('worker virker');
+     else
+         alert('not');*/
+
     instans.readxml();
     var sol1: solution.Sol = new solution.Sol();
     alert(sol1.solevents.length.toString());
-    
+
     //  var k = new Course('jk', null);
 
 }

@@ -12,5 +12,4 @@ window.onload = function () {
     instans.readxml();
     var sol1 = new solution.Sol();
     alert(sol1.solevents.length.toString());
-    var fd;
 };

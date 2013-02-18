@@ -74,8 +74,12 @@ module instans {
         constructor (name: string, id: string) { super(id, name) }
     }
     class Course extends EventGroup { }
-    export  class ResourceType extends Entity {
-        constructor (name: string, id: string) { super(id, name) }
+    export class ResourceType extends Entity {
+        resourcegroups: ResourceGroup[];
+        constructor(name: string, id: string) {
+            super(id, name);
+            this.resourcegroups = [];
+        }
     }
     export class ResourceGroup extends Entity {
         constructor (name: string, id: string, public resourcetype: ResourceType) { super(id, name) }
@@ -163,14 +167,12 @@ module instans {
             var curtime = tmp[key];
             var nytime = new Time(curtime["Id"], curtime["Name"]);
             if (curtime["Week"]) {
-                //            nytime.timegroups.push(tidsgrupper[gruppeid.indexOf(curtime["Week"]["Reference"])]);
-                var tmg = tidsgrupper[gruppeid.indexOf(curtime["Week"]["Reference"])];
+                 var tmg = tidsgrupper[gruppeid.indexOf(curtime["Week"]["Reference"])];
                 nytime.timegroups.push(tmg);
                 tmg.timer.push(nytime);
 
             }
             if (curtime["Day"]) {
-                //nytime.timegroups.push(tidsgrupper[gruppeid.indexOf(curtime["Day"]["Reference"])]);
                 var tmg = tidsgrupper[gruppeid.indexOf(curtime["Day"]["Reference"])];
                 nytime.timegroups.push(tmg);
                 tmg.timer.push(nytime);
@@ -203,8 +205,10 @@ module instans {
             tmp = res["ResourceGroups"]["ResourceGroup"];
             for (var key in tmp) {
                 var curgr = tmp[key];
-                resourcegrupper.push(new ResourceGroup(curgr["Id"], curgr["Name"],
-                   resourcetyper[typeid.indexOf(curgr["ResourceType"]["Reference"])]));
+                var restyp = resourcetyper[typeid.indexOf(curgr["ResourceType"]["Reference"])];
+                var resgr = new ResourceGroup(curgr["Id"], curgr["Name"],restyp);
+                resourcegrupper.push(resgr);
+                restyp.resourcegroups.push(resgr);
                 grupid.push(curgr["Id"]);
             }
         }
@@ -215,8 +219,8 @@ module instans {
                 resourcetyper[typeid.indexOf(curres["ResourceType"]["Reference"])]);
             for (var key2 in curres["ResourceGroups"]["ResourceGroup"]) {
                 k = curres["ResourceGroups"]["ResourceGroup"][key2];
-                if (k["Reference"])
-                    k = k["Reference"];
+              /*  if (k["Reference"])
+                    k = k["Reference"];*/
                 if (resourcegrupper[grupid.indexOf(k)] === null)
                     alert('fejl ved ' + curres["Id"]);
                 else
@@ -319,9 +323,13 @@ module instans {
         }
         //   xmlhttp.open("GET", "DenmarkSmallSchool.xml", false);
         //  xmlhttp.open("GET", "SouthAfricaLewitt2009.xml", false);
-        xmlhttp.open("GET", "DenmarkHasserisGymnasium2012.xml", false);
+     //   xmlhttp.open("GET", "DenmarkHasserisGymnasium2012.xml", false);
         //    xmlhttp.open("GET", "AustraliaSAHS96.xml", false);
-        // xmlhttp.open("GET", "SpainSchool.xml", false);
+        //xmlhttp.open("GET", "SpainSchool.xml", false);
+        xmlhttp.open("GET", "NetherlandsKottenpark2009.xml", false);
+        //      xmlhttp.open("GET", "FinlandSecondarySchool.xml", false);
+         
+        
         xmlhttp.send();
         var xmlDoc = xmlhttp.responseXML;
         var data;

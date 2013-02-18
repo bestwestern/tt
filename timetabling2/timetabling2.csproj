@@ -50,6 +50,9 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="hoved.min.js.map">
+      <DependentUpon>hoved.js</DependentUpon>
+    </Content>
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
