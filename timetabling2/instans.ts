@@ -1,4 +1,6 @@
-
+/// <reference path="solution.ts" />
+/// <reference path="instans.ts" />
+/// <reference path="hoved.ts" />
 
 module instans {
     export interface Constraint {

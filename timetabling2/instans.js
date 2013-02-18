@@ -115,6 +115,7 @@ var instans;
         __extends(ResourceType, _super);
         function ResourceType(name, id) {
                 _super.call(this, id, name);
+            this.resourcegroups = [];
         }
         return ResourceType;
     })(Entity);
@@ -259,7 +260,10 @@ var instans;
             tmp = res["ResourceGroups"]["ResourceGroup"];
             for(var key in tmp) {
                 var curgr = tmp[key];
-                resourcegrupper.push(new ResourceGroup(curgr["Id"], curgr["Name"], resourcetyper[typeid.indexOf(curgr["ResourceType"]["Reference"])]));
+                var restyp = resourcetyper[typeid.indexOf(curgr["ResourceType"]["Reference"])];
+                var resgr = new ResourceGroup(curgr["Id"], curgr["Name"], restyp);
+                resourcegrupper.push(resgr);
+                restyp.resourcegroups.push(resgr);
                 grupid.push(curgr["Id"]);
             }
         }
@@ -269,9 +273,6 @@ var instans;
             var nyres = new Resource(curres["Name"], curres["Id"], resourcetyper[typeid.indexOf(curres["ResourceType"]["Reference"])]);
             for(var key2 in curres["ResourceGroups"]["ResourceGroup"]) {
                 k = curres["ResourceGroups"]["ResourceGroup"][key2];
-                if(k["Reference"]) {
-                    k = k["Reference"];
-                }
                 if(resourcegrupper[grupid.indexOf(k)] === null) {
                     alert('fejl ved ' + curres["Id"]);
                 } else {
@@ -371,7 +372,7 @@ var instans;
         } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        xmlhttp.open("GET", "DenmarkHasserisGymnasium2012.xml", false);
+        xmlhttp.open("GET", "NetherlandsKottenpark2009.xml", false);
         xmlhttp.send();
         var xmlDoc = xmlhttp.responseXML;
         var data;
